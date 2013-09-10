@@ -1,0 +1,38 @@
+# 公共tag标签使用说明
+
+
+# breadcrumb
+#* breadcrumb tag
+Example:
+    {% load breadcrumb %}
+    {% breadcrumb tuple request %}
+其中tuple的格式为[{"name": "abc", "url": "/"}, {},....]
+
+同时可以在页面上手动添加breadcrumb
+#* add_crumb
+{% load breadcrumb %}
+{% add_crumb 'People' 'list_people' %}
+第一个参数为name第二个参数为url
+
+渲染的是同一个页面（breadcrumb.html）
+
+
+#* render_header tag
+Example:
+{% load nav %}
+{% render_header %}
+
+就可以将网站顶部的浮栏显示出来
+
+#* horizon_nav tag
+Example:
+{% load nav %}
+{% horizon_nav "当前选中的名称" 所有要显示的项  %}
+或是可以在settings文件里边配置HORIZON_SECTION项
+{% horizon_nav "当前选中的名称" %}
+
+
+
+
+
+
