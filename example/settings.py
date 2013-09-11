@@ -102,15 +102,19 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'example_app.urls'
+_PATH = os.path.abspath(os.path.dirname(__file__))
+_MODULE = os.path.basename(_PATH)
+ROOT_URLCONF = _MODULE + '.urls'
+# ROOT_URLCONF = 'example_app.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'example_app.wsgi.application'
+# WSGI_APPLICATION = 'example_app.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -125,8 +129,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'example_app',
     'html5tags',
+    'example_app',
 )
 
 # A sample logging configuration. The only tangible logging
