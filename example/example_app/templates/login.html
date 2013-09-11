@@ -1,0 +1,32 @@
+{% extends "auth_base.html" %}
+{% load form %}
+{% load breadcrumb %}
+{% load navigation %}
+{% load pagination %}
+{% load markdown2html %}
+{% load markup %}
+
+
+
+
+{% block content %}
+
+	{{test|markdown2html}}
+	
+	{{test|mark}}
+
+
+
+	<div class="col-xs-12 col-md-12">
+	{% breadcrumb settings.SITE_APPS_URLS request %}
+	</div>
+	<div class="col-xs-12 col-md-12">
+	{% form_html form "登录" '' %}
+	</div>
+	<div class="col-xs-12 col-md-12">
+	{% vertical_nav "" settings.SITE_APPS_URLS %}
+	</div>
+	<div class="col-xs-12 col-md-12">
+	{% pagination settings.SITE_APPS_URLS 2 2 "/auth/login" %}
+	</div>
+{% endblock %}

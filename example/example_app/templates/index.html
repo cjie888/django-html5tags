@@ -1,0 +1,94 @@
+{% load static %}
+{% load navigation %}
+{% load breadcrumb %}
+{% load pagination %}
+{% load markdown2html %}
+{% load markup %}
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" href="{% static 'bootstrap3/css/bootstrap.min.css' %}" />
+	</head>
+
+	<body>
+
+        <!--tag render_header example-->
+	    {% render_header %}
+
+	    <div class='container'>
+	    	<header>
+				<div style="margin-top: 5em;"></div>
+			</header>
+
+
+			<!--tag horizon_nav example-->
+			<h3>horizon_nav example:</h3>
+			{% horizon_nav "" settings.HORIZION_SECTION %}
+
+
+			<div class='row'>
+				<!--breadcrums tag example-->
+				<div class="col-xs-12 col-md-12">
+					<h3>breadcrumbs tag example:</h3>
+					{% breadcrumb settings.HORIZION_SECTION request %}
+				</div>
+
+
+				<!--add_crumbs example-->
+				<div class="col-xs-12 col-md-12">
+					<h3>add_crumbs example:</h3>
+					{% add_crumb "test" "/" %}
+					{% add_crumb "test1" "/" %}
+					{% render_breadcrumbs %}
+				</div>
+
+
+				<!--vertical_nav tag example-->
+				<div class="col-xs-12 col-md-12">
+					<h3>horizon_nav example:</h3>
+					
+					{% vertical_nav "" settings.HORIZION_SECTION %}
+				</div>
+
+
+				<!--navtagitem 手动添加导航-->
+				<div class="col-xs-12 col-md-12">
+					<h3>navtagitem 水平导航 example:</h3>
+					<ul class="nav nav-pills nav-justified">
+						<li>{% navtagitem "手动添加水平导航" "/" %}</li>
+						<li>{% navtagitem "测试" "/" %}</li>
+					</ul>
+				</div>
+
+				<div class="col-xs-12 col-md-12">
+					<h3>navtagitem 垂直导航 example:</h3>
+					<ul class="nav nav-pills nav-stacked">
+						<li> {% navtagitem "手动添加垂直导航" "/" %}</li>
+						<li>{% navtagitem "测试" "/" %}</li>
+					</ul>
+				</div>
+
+
+				<!--pagination tag example-->
+				<div class="col-xs-12 col-md-12">
+					<h3>pagination example:</h3>
+					{% pagination settings.HORIZION_SECTION 2 2 "/" %}
+				</div>
+
+
+				<!--markdown2html tag example-->
+				<div class="col-xs-12 col-md-12">
+					<h3>markdown example:</h3>
+					{{test|markdown2html}}
+					{{test|mark}}
+				</div>
+	       </div>
+	    </div>
+
+	</body>
+	
+</html>
