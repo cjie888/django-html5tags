@@ -20,14 +20,14 @@ def render_header(context):
 @register.tag("navtagitem")
 def navtagitem(parser, token):
     try:
-        tag_name, nav_path, nav_text = token.split_contents()
+        tag_name, nav_text, nav_path = token.split_contents()
     except ValueError:
         raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % token.split_contents[0]
 
-    return NavTagItem(nav_path, nav_text)
+    return NavTagItem(nav_text, nav_path)
 
 class NavTagItem(template.Node): 
-    def __init__(self, nav_path, nav_displaytext):
+    def __init__(self, nav_displaytext, nav_path):
         self.path = nav_path.strip('"')
         self.text = nav_displaytext.strip('"')
 
