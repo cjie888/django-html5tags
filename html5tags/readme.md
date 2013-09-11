@@ -1,7 +1,6 @@
 # 说明
 * app是基于bootstrap >=3
 * 需要安装适当版本的markdown
-* 在运行app的example时需要将app复制到example文件中，否则会有找不到module的错误
 
 # 各个tag在template中的使用
 * breadcrumb 使用
