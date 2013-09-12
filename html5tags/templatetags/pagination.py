@@ -67,7 +67,7 @@ class PaginationNode(template.Node):
         self._url_path = template.Variable(url_path)
 
     def render(self, context):
-        t = template.loader.get_template("tags/pagination.html")
+        t = template.loader.get_template("pagination.html")
         url = self._url_path.resolve(context)
         pagesize = self._pagesize.resolve(context)
         pageno = self._pageno.resolve(context)

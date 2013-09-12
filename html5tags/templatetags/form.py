@@ -179,7 +179,7 @@ class FormHtmlNode(template.Node):
         form = self.form.resolve(context)
         btn_text = self.btn_text.resolve(context)
         form_url = self.form_url.resolve(context)
-        t = template.loader.get_template("tags/form.html")
+        t = template.loader.get_template("form.html")
         new_context = Context({"form": form, "btn_text": btn_text, "form_url": form_url},
                               autoescape=context.autoescape)
         return t.render(new_context)

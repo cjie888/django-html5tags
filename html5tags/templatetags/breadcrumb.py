@@ -23,7 +23,7 @@ class BreadcrumbNode(template.Node):
         self.request = template.Variable(request)
 
     def render(self, context):
-        t = template.loader.get_template("tags/breadcrumb.html")
+        t = template.loader.get_template("breadcrumb.html")
         new_context = Context({'breadcrumb': self.breadcrumb.resolve(context),
                                'request': self.request.resolve(context)},
                               autoescape=context.autoescape)
@@ -51,7 +51,7 @@ def add_crumb(parser, token):
     return AddCrumbNode(*args, **kwargs)
 
 
-@register.inclusion_tag('tags/breadcrumb.html', takes_context=True)
+@register.inclusion_tag('breadcrumb.html', takes_context=True)
 def render_breadcrumbs(context):
     if 'request' in context and hasattr(context['request'], 'breadcrumbs'):
         crumbs = context['request'].breadcrumbs

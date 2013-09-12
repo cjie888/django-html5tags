@@ -9,7 +9,7 @@ from django.template import Context
 register = template.Library()
 
 
-@register.inclusion_tag('tags/header.html', takes_context=True)
+@register.inclusion_tag('header.html', takes_context=True)
 def render_header(context):
     request = context['request']
     settings = context['settings']
@@ -56,7 +56,7 @@ class HorizontalNavNode(template.Node):
         self.tabs = template.Variable(tabs)
 
     def render(self, context):
-        t = template.loader.get_template("tags/horizontal_nav.html")
+        t = template.loader.get_template("horizontal_nav.html")
         tabs = copy.deepcopy(self.tabs.resolve(context))
         cur_tab = self.tab.resolve(context)
         for tab in tabs:
@@ -80,7 +80,7 @@ class VerticalNavNode(template.Node):
         self.tabs = template.Variable(tabs)
 
     def render(self, context):
-        t = template.loader.get_template("tags/vertical_nav.html")
+        t = template.loader.get_template("vertical_nav.html")
         tabs = self.tabs.resolve(context)
         cur_tab = self.tab.resolve(context)
         new_context = Context({'cur_tab': cur_tab, 'tabs': tabs}, autoescape=context.autoescape)
