@@ -1,6 +1,6 @@
 # 说明
 * app是基于bootstrap >=3
-* 需要安装适当版本的markdown
+* 需要安装适当版本的markdown,安装命令 easy_install markdown
 
 # 各个tag在template中的使用
 * breadcrumb 使用
@@ -13,14 +13,14 @@
 * add_crumb使用
 
 {% load breadcrumb %}
-{% add_crumb 'People' 'list_people' %}
+{% add_crumb 'People' 'people_link' %}
 第一个参数为name第二个参数为url
 渲染的页面为：breadcrumb.html
 
 
 * render_header使用
 
-{% load nav %}
+{% load navigation %}
 {% render_header %}
 网站顶部的浮栏显示出来，需要在settings中配置页面显示需要的全局配置
 LOGIN_URL  登陆URL
@@ -30,7 +30,7 @@ SITE_NAME  站点名称
 
 * horizon_nav使用
 
-{% load nav %}
+{% load navigation %}
 {% horizon_nav "当前选中的名称" 所有要显示的项  %}
 或是可以在settings中配置HORIZON_SECTION
 HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
@@ -38,12 +38,12 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
 
 * vertical_nav使用
 
-{% load nav %}
+{% load navigation %}
 {% vertical_nav "当前选中的名称" 所有要显示的项  %}
 
 
 * navtagitem使用
-
+{% load navigation %}
 <ul class="nav nav-pills nav-stacked">
 	<li> {% navtagitem "手动添加垂直导航" "/" %}</li>
 	<li>{% navtagitem "测试" "/" %}</li>
@@ -54,7 +54,7 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
 
 将markdown格式的转化为html
 {% load markdown2html %}
-{% markdown2html markdowncss %}
+{% markdowncss|markdown2html %}
 
 
 * pagination使用
