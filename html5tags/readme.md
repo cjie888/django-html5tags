@@ -21,7 +21,7 @@
 * render_header使用
 
 {% load navigation %}
-{% render_header %}
+{% render_navbar %}
 网站顶部的浮栏显示出来，需要在settings中配置页面显示需要的全局配置
 LOGIN_URL  登陆URL
 LOGOUT_URL  注销URL
@@ -59,4 +59,4 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
 
 * pagination使用
 
-{% pagination page_datas pageno pagesize prefix %}
+{% pagination page_datas prefix request %}

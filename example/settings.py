@@ -179,4 +179,6 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},
                     {"name": u"成长记录", },
                   ]
 
+NAVBAR = [{"name": "example", "url": "/"},
+          {"name": "test", "url": "/"}]
 

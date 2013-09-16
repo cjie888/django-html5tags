@@ -2,19 +2,34 @@
 import copy
 
 from django import template
-from django.conf import settings
+# from django.conf import settings
 from django.template import Context
 
 
 register = template.Library()
 
 
-@register.inclusion_tag('header.html', takes_context=True)
-def render_header(context):
-    request = context['request']
-    settings = context['settings']
+@register.tag("render_navbar")
+def narbar(parser, token):
+    try:
+        tag_name, buttons = token.split_contents()
+    except ValueError:
+        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % token.split_contents[0]
+    return NavBar(buttons)
 
-    return {'request': request, 'settings': settings}
+class NavBar(template.Node):
+    def __init__(self, buttons):
+        self.buttons = template.Variable(buttons)
+
+    def render(self, context):
+        t = template.loader.get_template("header.html")
+        request = context["request"]
+        settings = context["settings"]
+        buttons = self.buttons.resolve(context)
+
+        new_context = Context({"request": request, "settings": settings, "buttons": buttons},
+                              autoescape=context.autoescape)
+        return t.render(new_context)
 
 
 @register.tag("navtagitem")
@@ -38,14 +53,7 @@ class NavTagItem(template.Node):
 @register.tag("horizon_nav")
 def do_horizontal_nav(parser, token):
     try:
-        items = token.split_contents()
-        tag_name = items[0]
-        if len(items) > 1 and len(items) == 2:
-            tab = items[1]
-            tabs = getattr(settings, 'HORIZION_SECTION', [])
-        else:
-            tab = items[1]
-            tabs = items[2]
+        tag_name, tab, tabs = token.split_contents()
     except ValueError:
         raise template.TemplateSyntaxError("%r tag requires a single argument" % token.contents.split()[0])
     return HorizontalNavNode(tab, tabs)

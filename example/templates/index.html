@@ -16,8 +16,8 @@
 
 	<body>
 
-        <!--tag render_header example-->
-	    {% render_header %}
+        <!--tag render_narbar example-->
+	    {% render_navbar settings.NAVBAR %}
 
 	    <div class='container'>
 	    	<header>
@@ -49,7 +49,7 @@
 
 				<!--vertical_nav tag example-->
 				<div class="col-xs-12 col-md-12">
-					<h3>horizon_nav example:</h3>
+					<h3>vertical_nav example:</h3>
 					
 					{% vertical_nav "" settings.HORIZION_SECTION %}
 				</div>
@@ -76,7 +76,7 @@
 				<!--pagination tag example-->
 				<div class="col-xs-12 col-md-12">
 					<h3>pagination example:</h3>
-					{% pagination settings.HORIZION_SECTION 2 2 "/" %}
+					{% pagination settings.HORIZION_SECTION "/" request %}
 				</div>
 
 

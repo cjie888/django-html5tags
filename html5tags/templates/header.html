@@ -26,6 +26,9 @@
 				<li><a href="{{settings.LOGOUT_URL}}">登录</a></li>
 				<li><a href="{{settings.REGISTER_URL}}">注册</a></li>
 			{% endif %}
+			{% for button in buttons %}
+				<li><a href="{{button.url}}">{{button.name}}</a></li>
+			{% endfor %}
 
 		</ul>
 	</div>
