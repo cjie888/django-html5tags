@@ -18,7 +18,7 @@
 渲染的页面为：breadcrumb.html
 
 
-* render_header使用
+* render_navbar使用
 
 {% load navigation %}
 {% render_navbar %}
@@ -27,6 +27,25 @@ LOGIN_URL  登陆URL
 LOGOUT_URL  注销URL
 REGISTER_URL  注册URL
 SITE_NAME  站点名称
+
+
+* render_footer使用
+
+{% load navigation %}
+{% render_footer %}
+在settings文件中配置FOOTER
+例如：[
+		[
+			{"name": u"问题反馈", },
+			{"name": u"常见问题解答", "url": "/"}
+		],
+		[
+			{"name": u"合作伙伴", },
+           	{"name": u"技术支持：应用研发系统组", "url": "/"}
+        ]
+   ]
+其中每个list表示这一列要显示的项，第一项当做标题使用
+
 
 * horizon_nav使用
 
@@ -59,4 +78,5 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
 
 * pagination使用
 
+{% load pagination %}
 {% pagination page_datas prefix request %}

@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'html5tags',
+    'floppyforms',
     'example_app',
 )
 
@@ -182,3 +183,11 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},
 NAVBAR = [{"name": "example", "url": "/"},
           {"name": "test", "url": "/"}]
 
+
+FOOTER = [[{"name": u"问题反馈", },
+           {"name": u"常见问题解答", "url": "/"},
+           {"name": u"故障报告", "url": "/"},
+           {"name": u"使用帮助", "url": "/"}],
+          [{"name": u"合作伙伴", },
+           {"name": u"技术支持：应用研发系统组", "url": "/"}]
+          ]

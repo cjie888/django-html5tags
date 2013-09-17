@@ -93,3 +93,17 @@ class VerticalNavNode(template.Node):
         cur_tab = self.tab.resolve(context)
         new_context = Context({'cur_tab': cur_tab, 'tabs': tabs}, autoescape=context.autoescape)
         return t.render(new_context)
+
+
+@register.inclusion_tag("footer.html", takes_context=True)
+def render_footer(context):
+    if "settings" in context and hasattr(context["settings"], "FOOTER"):
+        footers = context["settings"].FOOTER
+    else:
+        footers = None
+    if footers and len(footers) == 0:
+        footers = None
+    return {"footers": footers}
+
+
+
