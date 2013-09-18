@@ -21,9 +21,9 @@
 
 			{% if request.user and request.user.is_authenticated %}
 				<li><a href="/">{{request.user.username}}</a></li>
-				<li><a href="{{settings.LOGIN_URL}}">退出</a></li>
+				<li><a href="{{settings.LOGOUT_URL}}">退出</a></li>
 			{% else %}
-				<li><a href="{{settings.LOGOUT_URL}}">登录</a></li>
+				<li><a href="{{settings.LOGIN_URL}}">登录</a></li>
 				<li><a href="{{settings.REGISTER_URL}}">注册</a></li>
 			{% endif %}
 			{% for button in buttons %}
