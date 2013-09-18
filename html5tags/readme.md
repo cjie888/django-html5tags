@@ -27,6 +27,8 @@ LOGIN_URL  登陆URL
 LOGOUT_URL  注销URL
 REGISTER_URL  注册URL
 SITE_NAME  站点名称
+悬浮高度是70px
+下面的控件  marggin-top=70
 
 
 * render_footer使用
