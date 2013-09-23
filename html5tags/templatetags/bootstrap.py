@@ -72,7 +72,7 @@ def render(element, markup_classes):
             for form in element.forms:
                 for field in form.visible_fields():
                     add_input_classes(field)
- 
+
             template = get_template("bootstrapform/formset.html")
             context = Context({'formset': element, 'classes': markup_classes})
         else:

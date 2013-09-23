@@ -154,7 +154,6 @@ def crispy_field(parser, token):
     # We need to pop tag name, or pairwise would fail
     token.pop(0)
     for attribute_name, value in pairwise(token):
-        print attribute_name
         attrs[attribute_name] = value
 
     return CrispyFieldNode(field, attrs)
