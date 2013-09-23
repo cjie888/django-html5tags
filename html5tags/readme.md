@@ -82,3 +82,21 @@ HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
 
 {% load pagination %}
 {% pagination page_datas prefix request %}
+
+* bootstrap tag 使用
+
+{% load bootstrap %}
+{{form|bootstrap}}
+tag不支持textarea的markdown显示，如果需要markdown显示需要用下面的方式
+
+* bootstrap form
+
+写form类的时候引入
+import html5tags.bootstrap as forms
+bootstrap_textarea = forms.CharField(widget=forms.MarkDownTextarea)
+其他的form的field使用方法和默认的forms一样
+页面上的布局要自己定义
+
+
+
+
