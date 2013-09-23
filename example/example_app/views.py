@@ -57,13 +57,13 @@ def home(request):
     return render_to_response("index.html", {"settings": settings, "request": request, "test": test,
                                              "pages": pages}, context_instance=RequestContext(request))
 
-def index(request):
+def form_tag(request):
     form = ExampleForm()
 
     return render_to_response('example_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
 
 
-def test(request):
+def rewrite_form(request):
     form = TestForm()
 
     return render_to_response('test_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
