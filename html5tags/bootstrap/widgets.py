@@ -1,15 +1,9 @@
 # -*- coding:utf-8 -*-
-import re
-
 from django import forms
-from django.forms.util import to_current_timezone
-from django.forms.widgets import FILE_INPUT_CONTRADICTION
 from django.conf import settings
-from django.utils.datastructures import MultiValueDict, MergeDict
 from django.utils.html import conditional_escape
 from django.utils.translation import ugettext_lazy as _
 from django.utils import formats
-from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.forms.util import flatatt
 from django.utils.encoding import force_unicode
@@ -328,11 +322,11 @@ class SelectMultiple(Select, forms.SelectMultiple):
         return mark_safe(u'\n'.join(output))
 
 
-class RadioSelect(forms.RadioSelect):#Select):
+class RadioSelect(forms.RadioSelect):
     pass
 
 
-class CheckboxSelectMultiple(SelectMultiple):
+class CheckboxSelectMultiple(forms.CheckboxSelectMultiple):
     pass
 
 
@@ -340,25 +334,8 @@ class MultiWidget(forms.MultiWidget):
     pass
 
 
-class SplitDateTimeWidget(MultiWidget):
-    def __init__(self, attrs=None, date_format=None, time_format=None):
-        widgets = (DateInput(attrs=attrs, format=date_format),
-                   TimeInput(attrs=attrs, format=time_format))
-        super(SplitDateTimeWidget, self).__init__(widgets, attrs)
+class SplitDateTimeWidget(forms.SplitDateTimeWidget):
+    pass
 
-    def decompress(self, value):
-        if value:
-            value = to_current_timezone(value)
-            return [value.date(), value.time().replace(microsecond=0)]
-        return [None, None]
-
-
-class SplitHiddenDateTimeWidget(SplitDateTimeWidget):
-    is_hidden = True
-
-    def __init__(self, attrs=None, date_format=None, time_format=None):
-        super(SplitHiddenDateTimeWidget, self).__init__(attrs, date_format,
-                                                        time_format)
-        for widget in self.widgets:
-            widget.input_type = 'hidden'
-            widget.is_hidden = True
+class SplitHiddenDateTimeWidget(forms.SplitDateTimeWidget):
+    pass

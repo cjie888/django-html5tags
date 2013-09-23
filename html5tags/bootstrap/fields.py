@@ -142,13 +142,7 @@ class MultiValueField(Field, forms.MultiValueField):
 
 
 class SplitDateTimeField(forms.SplitDateTimeField):
-    widget = SplitDateTimeWidget
-    hidden_widget = SplitHiddenDateTimeWidget
-
-    def __init__(self, *args, **kwargs):
-        super(SplitDateTimeField, self).__init__(*args, **kwargs)
-        for widget in self.widget.widgets:
-            widget.is_required = self.required
+    pass
 
 
 class SlugField(Field, forms.SlugField):
