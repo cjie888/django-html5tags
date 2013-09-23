@@ -72,18 +72,18 @@ class WidgetRenderingTest(TestCase):
         invalid = lambda: forms.CharField(max_length=5).clean('foo bar')
         self.assertRaises(forms.ValidationError, invalid)
 
-#         class TextFormMax(forms.Form):
-#             text = forms.CharField(max_length=2)
-# 
-#         self.assertFalse(TextFormMax(data={'text': 'foo'}).is_valid())
-# 
-#         rendered = TextForm(data={'text': 0}).as_p()
-# 
-#         self.assertHTMLEqual(rendered, """
-#         <p>
-#             <label for="id_text">Text:</label>
-#             <input class=" form-control" type="text" name="text" id="id_text" value="0" maxlength="2">
-#         </p>""")
+        class TextFormMax(forms.Form):
+            text = forms.CharField(max_length=2)
+ 
+        self.assertFalse(TextFormMax(data={'text': 'foo'}).is_valid())
+ 
+        rendered = TextFormMax(data={'text': 0}).as_p()
+ 
+        self.assertHTMLEqual(rendered, """
+        <p>
+            <label for="id_text">Text:</label>
+            <input class=" form-control" type="text" name="text" id="id_text" value="0" maxlength="2">
+        </p>""")
 
     def test_password(self):
         """<input type="password">"""
@@ -102,7 +102,7 @@ class WidgetRenderingTest(TestCase):
             pw = forms.CharField(widget=forms.PasswordInput)
  
         form = PwFormWidget(data={'pw': 'some-pwd'})
-        self.assertFalse(form.is_valid())  # missing text
+        self.assertFalse(form.is_valid())
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
@@ -124,7 +124,7 @@ class WidgetRenderingTest(TestCase):
             )
  
         form = PwFormData(data={'pw': 'some-pwd'})
-        self.assertFalse(form.is_valid())  # missing text
+        self.assertFalse(form.is_valid())
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
@@ -503,6 +503,7 @@ class WidgetRenderingTest(TestCase):
             multi = forms.MultipleChoiceField(choices=CHOICES)
 
         rendered = MultiForm().as_p()
+
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_multi">Multi:</label>
@@ -614,78 +615,78 @@ class WidgetRenderingTest(TestCase):
             </select>
         </p>""")
 
-#     def test_cb_multiple(self):
-#         """CheckboxSelectMultiple"""
-#         CHOICES = (
-#             ('en', 'English'),
-#             ('de', 'Deutsch'),
-#             ('fr', 'Francais'),
-#         )
-# 
-#         class MultiForm(forms.Form):
-#             multi = forms.MultipleChoiceField(
-#                 choices=CHOICES,
-#                 widget=forms.CheckboxSelectMultiple,
-#             )
-# 
-#         rendered = MultiForm().as_p()
-# 
-#         self.assertHTMLEqual(rendered, """
-#         <p>
-#             <label for="id_multi">Multi:</label>
-#             <ul>
-#                 <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="en">English</label></li>
-#                 <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="de">Deutsch</label></li>
-#                 <li><label for="id_multi_3"><input type="checkbox" id="id_multi_3" name="multi" value="fr">Francais</label></li>
-#             </ul>
-#         </p>
-#         """)
-#         rendered = MultiForm(data={'multi': ['fr', 'en']}).as_p()
-#         self.assertHTMLEqual(rendered, """
-#         <p>
-#             <label for="id_multi">Multi:</label>
-#             <ul>
-#                 <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="en" checked>English</label></li>
-#                 <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="de">Deutsch</label></li>
-#                 <li><label for="id_multi_3"><input type="checkbox" id="id_multi_3" name="multi" value="fr" checked>Francais</label></li>
-#             </ul>
-#         </p>
-#         """)
+    def test_cb_multiple(self):
+        """CheckboxSelectMultiple"""
+        CHOICES = (
+            ('en', 'English'),
+            ('de', 'Deutsch'),
+            ('fr', 'Francais'),
+        )
+ 
+        class MultiForm(forms.Form):
+            multi = forms.MultipleChoiceField(
+                choices=CHOICES,
+                widget=forms.CheckboxSelectMultiple,
+            )
+ 
+        rendered = MultiForm().as_p()
+ 
+        self.assertHTMLEqual(rendered, """
+        <p>
+            <label for="id_multi_0">Multi:</label>
+            <ul>
+                <li><label for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en">English</label></li>
+                <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
+                <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr">Francais</label></li>
+            </ul>
+        </p>
+        """)
+        rendered = MultiForm(data={'multi': ['fr', 'en']}).as_p()
+        self.assertHTMLEqual(rendered, """
+        <p>
+            <label for="id_multi_0">Multi:</label>
+            <ul>
+                <li><label for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en" checked="checked">English</label></li>
+                <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
+                <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr" checked>Francais</label></li>
+            </ul>
+        </p>
+        """)
 
-#     def test_checkbox_select_multiple_with_iterable_initial(self):
-#         """Passing iterable objects to initial data, not only lists or tuples.
-#         This is useful for ValuesQuerySet for instance."""
-#         choices = (
-#             ('en', 'En'),
-#             ('fr', 'Fr'),
-#             ('de', 'De'),
-#         )
-# 
-#         class iterable_choices(object):
-#             def __init__(self, choices):
-#                 self.choices = choices
-# 
-#             def __iter__(self):
-#                 for choice in self.choices:
-#                     yield choice
-# 
-#             def __len__(self):
-#                 return len(self.choices)
-# 
-#         class Form(forms.Form):
-#             key = forms.MultipleChoiceField(
-#                 widget=forms.CheckboxSelectMultiple,
-#                 choices=choices,
-#             )
-# 
-#         form = Form(initial={'key': iterable_choices(['fr', 'en'])})
-#         self.assertHTMLEqual(form.as_p(), """
-#             <p><label for="id_key">Key:</label><ul>
-#                 <li><label for="id_key_1"><input id="id_key_1" name="key" type="checkbox" value="en" checked="checked">En</label></li>
-#                 <li><label for="id_key_2"><input id="id_key_2" name="key" type="checkbox" value="fr" checked="checked">Fr</label></li>
-#                 <li><label for="id_key_3"><input id="id_key_3" name="key" type="checkbox" value="de">De</label></li>
-#             </ul></p>
-#         """)
+    def test_checkbox_select_multiple_with_iterable_initial(self):
+        """Passing iterable objects to initial data, not only lists or tuples.
+        This is useful for ValuesQuerySet for instance."""
+        choices = (
+            ('en', 'En'),
+            ('fr', 'Fr'),
+            ('de', 'De'),
+        )
+ 
+        class iterable_choices(object):
+            def __init__(self, choices):
+                self.choices = choices
+ 
+            def __iter__(self):
+                for choice in self.choices:
+                    yield choice
+ 
+            def __len__(self):
+                return len(self.choices)
+ 
+        class Form(forms.Form):
+            key = forms.MultipleChoiceField(
+                widget=forms.CheckboxSelectMultiple,
+                choices=choices,
+            )
+ 
+        form = Form(initial={'key': iterable_choices(['fr', 'en'])})
+        self.assertHTMLEqual(form.as_p(), """
+            <p><label for="id_key_0">Key:</label><ul>
+                <li><label for="id_key_0"><input id="id_key_0" name="key" type="checkbox" value="en" checked="checked">En</label></li>
+                <li><label for="id_key_1"><input id="id_key_1" name="key" type="checkbox" value="fr" checked="checked">Fr</label></li>
+                <li><label for="id_key_2"><input id="id_key_2" name="key" type="checkbox" value="de">De</label></li>
+            </ul></p>
+        """)
 
     def test_radio_select(self):
         """<input type="radio">"""
@@ -918,19 +919,12 @@ class WidgetRenderingTest(TestCase):
             split = forms.SplitDateTimeField()
 
         rendered = SplitForm().as_p()
+
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_split_0">Split:</label>
-            <input class="form-control form-control" data-bootstrap-widget="datepicker" data-date-format="yyyy-mm-dd" data-date-language="en" id="id_split_0" name="split_0" type="None" />
-            <script>
-                $("#id_split_0").datetimepicker({
-                    keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-            </script>
-            <input class="form-control" data-bootstrap-widget="datepicker" data-date-format="hh:ii:ss" data-date-language="en" id="id_split_1" name="split_1" type="text" />
-            <script>
-                $("#id_split_1").datetimepicker({
-                    keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-            </script>
+            <input type="text" name="split_0" id="id_split_0" />
+            <input type="text" name="split_1" id="id_split_1" />
         </p>""")
 
         class SplitFormNotRequire(forms.Form):
@@ -940,16 +934,8 @@ class WidgetRenderingTest(TestCase):
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_split_0">Split:</label>
-            <input class="form-control form-control" data-bootstrap-widget="datepicker" data-date-format="yyyy-mm-dd" data-date-language="en" id="id_split_0" name="split_0" type="None" />
-            <script>
-                $("#id_split_0").datetimepicker({
-                    keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-            </script>
-            <input class="form-control" data-bootstrap-widget="datepicker" data-date-format="hh:ii:ss" data-date-language="en" id="id_split_1" name="split_1" type="text" />
-            <script>
-                $("#id_split_1").datetimepicker({
-                    keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-            </script>
+            <input type="text" name="split_0" id="id_split_0" />
+            <input type="text" name="split_1" id="id_split_1" />
         </p>""")
  
         valid = {'split_0': '2011-02-06', 'split_1': '12:12'}
@@ -965,16 +951,11 @@ class WidgetRenderingTest(TestCase):
 
         rendered = SplitFormWidget().as_p()
         self.assertHTMLEqual(rendered, """
-        <input class="form-control form-control" data-bootstrap-widget="datepicker" data-date-format="yyyy-mm-dd" data-date-language="en" id="id_split_0" name="split_0" type="hidden" />
-        <script>
-            $("#id_split_0").datetimepicker({
-                keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-        </script>
-        <input class="form-control" data-bootstrap-widget="datepicker" data-date-format="hh:ii:ss" data-date-language="en" id="id_split_1" name="split_1" type="hidden" />
-        <script>
-            $("#id_split_1").datetimepicker({
-                keyboardNavigation: true, todayBtn: true, todayHighlight: true, startView: 1}, "update");
-        </script>
+        <p>
+            <label for="id_split_0">Split:</label>
+            <input type="text" name="split_0" id="id_split_0" />
+            <input type="text" name="split_1" id="id_split_1" />
+        </p>
         """)
 
     def test_multiple_hidden(self):
@@ -995,34 +976,23 @@ class WidgetRenderingTest(TestCase):
         <input class=" form-control" id="id_multi" name="multi" type="hidden" value="['heh', 'foo']" />
         """)
 
-#     def test_datetime_with_initial(self):
-#         """SplitDateTimeWidget with an initial value"""
-#         value = now()
-# 
-#         class DateTimeForm(forms.Form):
-#             dt = forms.DateTimeField(initial=value,
-#                                      widget=forms.SplitDateTimeWidget)
-# 
-#         rendered = DateTimeForm().as_p()
-#         self.assertHTMLEqual(rendered, """
-#         <p>
-#             <label for="id_dt_0">Dt:</label>
-#             <input type="date" name="dt_0" value="%s" id="id_dt_0">
-#             <input type="time" name="dt_1" value="%s" id="id_dt_1">
-#         </p>""" % (value.strftime("%Y-%m-%d"), value.strftime("%H:%M:%S")))
+    def test_datetime_with_initial(self):
+        """SplitDateTimeWidget with an initial value"""
+        value = now()
+  
+        class DateTimeForm(forms.Form):
+            dt = forms.DateTimeField(initial=value,
+                                     widget=forms.SplitDateTimeWidget)
+  
+        rendered = DateTimeForm().as_p()
+        import time
+        self.assertHTMLEqual(rendered, """
+        <p>
+            <label for="id_dt_0">Dt:</label>
+            <input type="text" name="dt_0" value="%s" id="id_dt_0">
+            <input type="text" name="dt_1" value="%s" id="id_dt_1">
+        </p>""" % (value.strftime("%Y-%m-%d"), time.strftime("%H:%M:%S", time.localtime( time.time()))))
 
-
-#         class SelectDateForm(forms.Form):
-#             dt = forms.DateField(initial='%s-09-09' % today.year,
-#                                  widget=forms.SelectDateWidget)
-#         rendered = SelectDateForm().as_p()
-#         self.assertTrue(str(today.year) in rendered, rendered)
-#         self.assertEqual(rendered.count('<option value="0">---</option>'), 0)
-# 
-#         class SelectDateForm(forms.Form):
-#             dt = forms.DateField(widget=forms.SelectDateWidget(required=False))
-#         rendered = SelectDateForm().as_p()
-#         self.assertEqual(rendered.count('<option value="0">---</option>'), 3)
 
     def test_no_attrs_rendering(self):
         widget = forms.TextInput()
