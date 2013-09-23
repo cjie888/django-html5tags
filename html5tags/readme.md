@@ -96,7 +96,3 @@ import html5tags.bootstrap as forms
 bootstrap_textarea = forms.CharField(widget=forms.MarkDownTextarea)
 其他的form的field使用方法和默认的forms一样
 页面上的布局要自己定义
-
-
-
-
