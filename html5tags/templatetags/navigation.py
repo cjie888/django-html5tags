@@ -22,7 +22,7 @@ class NavBar(template.Node):
         self.buttons = template.Variable(buttons)
 
     def render(self, context):
-        t = template.loader.get_template("header.html")
+        t = template.loader.get_template("nav_bar.html")
         request = context["request"]
         settings = context["settings"]
         buttons = self.buttons.resolve(context)
