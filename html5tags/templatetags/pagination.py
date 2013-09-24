@@ -25,7 +25,7 @@ class PaginationNode(template.Node):
 
     def render(self, context):
         t = template.loader.get_template("pagination.html")
-        url = self._pager.resolve(context)
+        url = self._prefix.resolve(context)
         request = self._request.resolve(context)
         pager = self._pager.resolve(context)
 
