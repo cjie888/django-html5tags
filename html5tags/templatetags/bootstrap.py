@@ -50,13 +50,10 @@ def bootstrap_horizontal(element, label_cols={}):
 
 
 def add_input_classes(field):
-    if not is_checkbox(field) and not is_multiple_checkbox(field) and not is_radio(field):
+    if not is_checkbox(field) and not is_multiple_checkbox(field) and not is_radio(field) and not is_file(field):
         field_classes = field.field.widget.attrs.get('class', '')
         field_classes += ' form-control'
         field.field.widget.attrs['class'] = field_classes
-        #field_placeholder = field.field.widget.attrs.get('placeholder', '')
-        #field_placeholder += ""
-        #field.field.widget.attrs['placeholder'] = field_placeholder
 
 
 def render(element, markup_classes):
@@ -117,3 +114,7 @@ def is_datetime(field):
 @register.filter
 def is_time(field):
     return isinstance(field.field.widget, forms.TimeInput)
+
+@register.filter
+def is_file(field):
+    return isinstance(field.field.widget, (forms.ClearableFileInput, ))
