@@ -1,42 +1,89 @@
-# 说明
-* app是基于bootstrap >=3
-* 需要安装适当版本的markdown,安装命令 easy_install markdown
+django-html5tags is a tag depot which content navbar tag, navigation tag, pagination tag, form tag and so on
 
-# 各个tag在template中的使用
-* breadcrumb 使用
+Install the app requirements
+============================
 
+#. bootstrap - version >= 3
+#. markdown - easy_install markdown
+
+Installation
+============
+
+#. Add ``"django-html5tags"`` directory to your Python path.
+#. Add ``"html5tags"`` to your ``INSTALLED_APPS`` tuple found in
+   your settings file. (optional - to be able to run tests)
+
+Testing & Example
+=================
+
+There is an example project in the ``example/`` directory. To run
+automated tests for django-html5tags run the following command
+in ``example/`` directory:
+
+::
+
+    python example/manage.py test html5tags
+
+To run the example project:
+
+::
+
+    python example/manage.py runserver
+
+Then you can visit ``http://localhost:8000/`` to view the example.
+
+Usage
+=====
+
+### breadcrumb tag <br/>
+example:
+<pre>
 {% load breadcrumb %}
-{% breadcrumb tuple request %}
-其中tuple的格式为[{"name": "abc", "url": "/"}, {},....]
+{% breadcrumb crumbs request %}
 
+crumbs is like: [{"name": "abc", "url": "/"}, {},....]
+</pre>
 
-* add_crumb使用
-
+### add_crumb <br/>
+the similar function like breadcrumb
+example:
+<pre>
 {% load breadcrumb %}
 {% add_crumb 'People' 'people_link' %}
-第一个参数为name第二个参数为url
-渲染的页面为：breadcrumb.html
 
+the first parameter represent name which displayed on the page
+the second represent url
 
-* render_navbar使用
+this result will render to breadcrumb.html
+</pre>
 
+### render_navbar <br/>
+this tag will render to the page of header
+example:
+<pre>
 {% load navigation %}
 {% render_navbar %}
-网站顶部的浮栏显示出来，需要在settings中配置页面显示需要的全局配置
-LOGIN_URL  登陆URL
-LOGOUT_URL  注销URL
-REGISTER_URL  注册URL
-SITE_NAME  站点名称
-悬浮高度是70px
-下面的控件  marggin-top=70
 
+this tag require define something in settings
+the followings will illustrate:
+LOGIN_URL - login url
+LOGOUT_URL - loginout url
+REGISTER_URL - register url
+SITE_NAME - the name of site
 
-* render_footer使用
+the float height is 70px
 
+</pre>
+
+### render_footer <br/>
+example:
+<pre>
 {% load navigation %}
 {% render_footer %}
-在settings文件中配置FOOTER
-例如：[
+
+this tag require define FOOTER in settings
+FOOTER like :
+	[
 		[
 			{"name": u"问题反馈", },
 			{"name": u"常见问题解答", "url": "/"}
@@ -46,53 +93,72 @@ SITE_NAME  站点名称
            	{"name": u"技术支持：应用研发系统组", "url": "/"}
         ]
    ]
-其中每个list表示这一列要显示的项，第一项当做标题使用
+the first item of the dict is the title of the footer
+</pre>
 
-
-* horizon_nav使用
-
+### horizon_nav <br/>
+example:
+<pre>
 {% load navigation %}
-{% horizon_nav "当前选中的名称" 所有要显示的项  %}
-或是可以在settings中配置HORIZON_SECTION
-HORIZION_SECTION = [{"name": u"首页", "url": "/"},...]
+{% horizon_nav "curreant name" all_navs  %}
 
+you can define HORIZON_SECTION in settings
+HORIZION_SECTION like:
+	[{"name": u"首页", "url": "/"},...]
+</pre>
 
-* vertical_nav使用
-
+### vertical_nav <br/>
+example:
+<pre>
 {% load navigation %}
-{% vertical_nav "当前选中的名称" 所有要显示的项  %}
+{% vertical_nav "current name" all_navs  %}
+</pre>
 
-
-* navtagitem使用
+### navtagitem <br/>
+the similar function like vertical_nav
+example:
+<pre>
 {% load navigation %}
 <ul class="nav nav-pills nav-stacked">
 	<li> {% navtagitem "手动添加垂直导航" "/" %}</li>
 	<li>{% navtagitem "测试" "/" %}</li>
 </ul>
+</pre>
 
-
-* markdown2html使用
-
-将markdown格式的转化为html
+### markdown2html <br/>
+change the style of markdown into html
+example:
+<pre>
 {% load markdown2html %}
 {% markdowncss|markdown2html %}
+</pre>
 
-
-* pagination使用
-
+### pagination <br/>
+example:
+<pre>
 {% load pagination %}
 {% pagination page_datas prefix request %}
+</pre>
 
-* bootstrap tag 使用
-
+### bootstrap <br>
+display the form with bootstrap, you must define the submit button by yourself
+example:
+<pre>
 {% load bootstrap %}
 {{form|bootstrap}}
-tag不支持textarea的markdown显示，如果需要markdown显示需要用下面的方式
 
-* bootstrap form
+the tag dose not support the textarea display with markdown. if you want, you must add js in th html
+</pre>
 
-写form类的时候引入
+### bootstrap form <br>
+rewrite the django form and display the form with bootstrap
+example:
+<pre>
+when you define your form, you can use it lile this:
+
 import html5tags.bootstrap as forms
-bootstrap_textarea = forms.CharField(widget=forms.MarkDownTextarea)
-其他的form的field使用方法和默认的forms一样
-页面上的布局要自己定义
+bootstrap_textarea = forms.MarkDownField()
+...
+
+if you use this, you must write the html which is used to display the form by yourself
+</pre>
