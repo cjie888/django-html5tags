@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 from django import forms
 
 from .widgets import (TextInput, HiddenInput, CheckboxInput, Select,
                       ClearableFileInput, SelectMultiple, DateInput,
                       DateTimeInput, TimeInput, NumberInput, PasswordInput,
-                      EmailInput, NullBooleanSelect, IPAddressInput,
+                      EmailInput, NullBooleanSelect, IPAddressInput, MarkDownTextarea,
                       SplitDateTimeWidget, SplitHiddenDateTimeWidget)
 
 __all__ = (
@@ -13,7 +14,7 @@ __all__ = (
     'FloatField', 'DecimalField', 'RegexField', 'IPAddressField',
     'GenericIPAddressField', 'TypedChoiceField', 'FilePathField',
     'TypedMultipleChoiceField', 'ComboField', 'MultiValueField',
-    'SplitDateTimeField', 'SlugField',
+    'SplitDateTimeField', 'SlugField', 'MarkdownField'
 )
 
 
@@ -147,3 +148,7 @@ class SplitDateTimeField(forms.SplitDateTimeField):
 
 class SlugField(Field, forms.SlugField):
     pass
+
+
+class MarkdownField(Field):
+    widget = MarkDownTextarea
