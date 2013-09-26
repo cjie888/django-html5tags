@@ -104,6 +104,3 @@ def render_footer(context):
     if footers and len(footers) == 0:
         footers = None
     return {"footers": footers}
-
-
-

@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 from django.forms import models
 
 from .fields import Field
-#from .forms import LayoutRenderer
 from .widgets import Select, SelectMultiple
 
 __all__ = ('ModelForm', 'ModelChoiceField', 'ModelMultipleChoiceField')

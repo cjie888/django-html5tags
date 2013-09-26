@@ -106,7 +106,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li>This field is required.</li>
+            <li><small><font color="#ff0000">This field is required.</font></small></li>
         </ul>
         <p>
             <label for="id_text">Text:</label>
@@ -128,7 +128,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li>This field is required.</li>
+            <li><small><font color="#ff0000">This field is required.</font></small></li>
         </ul>
         <p>
             <label for="id_text">Text:</label>
@@ -391,7 +391,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li>This field is required.</li>
+            <li><small><font color="#ff0000">This field is required.</font></small></li>
         </ul>
         <p>
             <label for="id_cb">Cb:</label>
@@ -634,10 +634,10 @@ class WidgetRenderingTest(TestCase):
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_multi_0">Multi:</label>
-            <ul>
-                <li><label for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en">English</label></li>
-                <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
-                <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr">Francais</label></li>
+            <ul class="list-inline">
+                <li><label class="checkbox-inline" for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en">English</label></li>
+                <li><label class="checkbox-inline" for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
+                <li><label class="checkbox-inline" for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr">Francais</label></li>
             </ul>
         </p>
         """)
@@ -645,10 +645,10 @@ class WidgetRenderingTest(TestCase):
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_multi_0">Multi:</label>
-            <ul>
-                <li><label for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en" checked="checked">English</label></li>
-                <li><label for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
-                <li><label for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr" checked>Francais</label></li>
+            <ul class="list-inline">
+                <li><label class="checkbox-inline" for="id_multi_0"><input type="checkbox" id="id_multi_0" name="multi" value="en" checked="checked">English</label></li>
+                <li><label class="checkbox-inline" for="id_multi_1"><input type="checkbox" id="id_multi_1" name="multi" value="de">Deutsch</label></li>
+                <li><label class="checkbox-inline" for="id_multi_2"><input type="checkbox" id="id_multi_2" name="multi" value="fr" checked>Francais</label></li>
             </ul>
         </p>
         """)
@@ -681,10 +681,11 @@ class WidgetRenderingTest(TestCase):
  
         form = Form(initial={'key': iterable_choices(['fr', 'en'])})
         self.assertHTMLEqual(form.as_p(), """
-            <p><label for="id_key_0">Key:</label><ul>
-                <li><label for="id_key_0"><input id="id_key_0" name="key" type="checkbox" value="en" checked="checked">En</label></li>
-                <li><label for="id_key_1"><input id="id_key_1" name="key" type="checkbox" value="fr" checked="checked">Fr</label></li>
-                <li><label for="id_key_2"><input id="id_key_2" name="key" type="checkbox" value="de">De</label></li>
+            <p><label for="id_key_0">Key:</label>
+            <ul class="list-inline">
+                <li><label class="checkbox-inline" for="id_key_0"><input id="id_key_0" name="key" type="checkbox" value="en" checked="checked">En</label></li>
+                <li><label class="checkbox-inline" for="id_key_1"><input id="id_key_1" name="key" type="checkbox" value="fr" checked="checked">Fr</label></li>
+                <li><label class="checkbox-inline" for="id_key_2"><input id="id_key_2" name="key" type="checkbox" value="de">De</label></li>
             </ul></p>
         """)
 
@@ -707,10 +708,10 @@ class WidgetRenderingTest(TestCase):
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_radio_0">Radio:</label>
-            <ul>
-                <li><label for="id_radio_0"><input type="radio" name="radio" id="id_radio_0" value="en" >English</label></li>
-                <li><label for="id_radio_1"><input type="radio" name="radio" id="id_radio_1" value="de" >Deutsch</label></li>
-                <li><label for="id_radio_2"><input type="radio" name="radio" id="id_radio_2" value="fr" >Francais</label></li>
+            <ul class="list-inline">
+                <li><label class="radio-inline" for="id_radio_0"><input type="radio" name="radio" id="id_radio_0" value="en" >English</label></li>
+                <li><label class="radio-inline" for="id_radio_1"><input type="radio" name="radio" id="id_radio_1" value="de" >Deutsch</label></li>
+                <li><label class="radio-inline" for="id_radio_2"><input type="radio" name="radio" id="id_radio_2" value="fr" >Francais</label></li>
             </ul>
         </p>""")
 
@@ -718,10 +719,10 @@ class WidgetRenderingTest(TestCase):
         self.assertHTMLEqual(rendered, """
         <p>
             <label for="id_radio_0">Radio:</label>
-            <ul>
-                <li><label for="id_radio_0"><input type="radio" name="radio" id="id_radio_0" value="en" >English</label></li>
-                <li><label for="id_radio_1"><input type="radio" name="radio" id="id_radio_1" value="de" >Deutsch</label></li>
-                <li><label for="id_radio_2"><input type="radio" name="radio" id="id_radio_2" value="fr" checked>Francais</label></li>
+            <ul class="list-inline">
+                <li><label class="radio-inline" for="id_radio_0"><input type="radio" name="radio" id="id_radio_0" value="en" >English</label></li>
+                <li><label class="radio-inline" for="id_radio_1"><input type="radio" name="radio" id="id_radio_1" value="de" >Deutsch</label></li>
+                <li><label class="radio-inline" for="id_radio_2"><input type="radio" name="radio" id="id_radio_2" value="fr" checked>Francais</label></li>
             </ul>
         </p>""")
 
@@ -1071,7 +1072,7 @@ class WidgetRenderingTest(TestCase):
 
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li>Some error</li>
+            <li><small><font color="#ff0000">Some error</font></small></li>
         </ul>
         <p>
             <label for="id_file_">File :</label>
