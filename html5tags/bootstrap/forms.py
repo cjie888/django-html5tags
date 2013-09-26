@@ -11,7 +11,14 @@ __all__ = ('BaseForm', 'Form',)
 
 
 class BaseForm(forms.BaseForm):
-    pass
+    def as_bootstrap(self):
+        "Returns this form rendered as bootstrap style."
+        return self._html_output(
+            normal_row = u'<div class="form-group"%(html_class_attr)s>%(errors)s%(label)s %(field)s%(help_text)s</div>',
+            error_row = u'<label>%s</label>',
+            row_ender = '</div>',
+            help_text_html = u' <span class="helptext">%s</span>',
+            errors_on_separate_row = False)
 
 
 @python_2_unicode_compatible
@@ -27,7 +34,7 @@ class BootstrapErrorList(ErrorList):
         return self.as_ul()
 
 
-class Form(forms.Form):
+class Form(BaseForm, forms.Form):
     def __init__(self, *args, **kwargs):
         new_kwargs = {'error_class': BootstrapErrorList}
         new_kwargs.update(kwargs)

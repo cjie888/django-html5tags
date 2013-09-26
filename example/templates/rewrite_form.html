@@ -1,6 +1,5 @@
 {% load static %}
 {% load bootstrap %}
-{% load render_form_field %}
 
 <!DOCTYPE html>
 <html>
@@ -27,9 +26,7 @@
                 <form role="form" action="/view/" method="post">
 
                     
-					{% for field in form %}
-					{% render_field field "div" "form-group" "label" "" %}
-					{% endfor %}
+					{{form.as_bootstrap}}
 
                     <div class="form-actions">
                         <input type="submit" class="btn btn-primary" value="Submit" />
