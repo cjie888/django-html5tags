@@ -1,0 +1,41 @@
+{% load static %}
+{% load bootstrap %}
+{% load render_form_field %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+	    <link rel="stylesheet" href="{% static 'bootstrap3/css/bootstrap.min.css' %}" />
+	    <link rel="stylesheet" href="{% static 'bootstrap3/css/datetimepicker.css' %}" />
+	    
+	    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'bootstrap3/js/bootstrap-datetimepicker.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'bootstrap3/js/bootstrap-datetimepicker.zh-CN.js' %}"></script>
+        {{form.media}}
+        <title>Bootstrap form example</title>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bootstrap form example</h1>
+            <hr />
+
+            <div class="row">
+
+                <form role="form" action="/view/" method="post">
+
+                    
+					{% for field in form %}
+					{% render_field field "div" "form-group" "label" "" %}
+					{% endfor %}
+
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -60,10 +60,10 @@ def home(request):
 def form_tag(request):
     form = ExampleForm()
 
-    return render_to_response('example_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
+    return render_to_response('form_tag.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
 
 
 def rewrite_form(request):
     form = TestForm()
 
-    return render_to_response('test_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
+    return render_to_response('rewrite_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
