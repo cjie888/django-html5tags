@@ -25,8 +25,7 @@ class BreadcrumbNode(template.Node):
     def render(self, context):
         t = template.loader.get_template("breadcrumb.html")
         new_context = Context({'breadcrumb': self.breadcrumb.resolve(context),
-                               'request': self.request.resolve(context)},
-                              autoescape=context.autoescape)
+                               'request': self.request.resolve(context)}, autoescape=context.autoescape)
         return t.render(new_context)
 
 
@@ -62,4 +61,3 @@ def render_breadcrumbs(context):
     return {
         'breadcrumb': crumbs,
     }
-
