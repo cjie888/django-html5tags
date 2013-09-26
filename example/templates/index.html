@@ -24,11 +24,48 @@
 				<div style="margin-top: 5em;"></div>
 			</header>
 
+			<div class="col-xs-12 col-md-12" id="doforyou">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h5><b>render_navbar使用方法</b> </h5></div>
+					<div class="panel-body">
+			   			<p>
+			   				<span class="cp">{%</span>
+							<span>load navigation</span>
+							<span>%}</span>
+							<span>{%</span>
+							<span>render_navbar settings.NAVBAR</span>
+							<span>%}</span>
+						</p>
+						<p>
+							<span>其中settings.NAVBAR是定义在settings中的变量，也可以是其他地方定义的，只要页面能取到。</span>
+							<span>格式为：[{"name": u"首页", "url": "/"},...]</span>
+			 			</p>
+			 		</div>
+				</div>
+			</div>
 
 			<!--tag horizon_nav example-->
 			<h3>horizon_nav example:</h3>
 			{% horizon_nav "" settings.HORIZION_SECTION %}
-
+			<div class="col-xs-12 col-md-12" id="doforyou">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h5><b>horizon_nav使用方法</b> </h5></div>
+					<div class="panel-body">
+			   			<p>
+			   				<span class="cp">{%</span>
+							<span>load navigation</span>
+							<span>%}</span>
+							<span>{%</span>
+							<span>horizon_nav "" settings.HORIZION_SECTION</span>
+							<span>%}</span>
+						</p>
+						<p>
+							<span>第一个参数是当前选中的name，settings.HORIZION_SECTION是定义在settings中的变量，也可以是其他地方定义的，只要页面能取到。</span>
+							<span>格式为：[{"name": u"首页", "url": "/"},...]</span>
+			 			</p>
+			 		</div>
+				</div>
+			</div>
 
 			<div class='row'>
 				<!--breadcrums tag example-->
@@ -36,8 +73,26 @@
 					<h3>breadcrumbs tag example:</h3>
 					{% breadcrumb settings.HORIZION_SECTION request %}
 				</div>
-
-
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>breadcrumb使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load breadcrumb</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>breadcrumb settings.HORIZION_SECTION request</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>其中settings.HORIZION_SECTION是定义在settings中的变量，也可以是其他地方定义的，只要页面能取到。</span>
+								<span>格式为：[{"name": u"首页", "url": "/"},...]</span>
+				 			</p>
+				 		</div>
+					</div>
+				</div>
+				
 				<!--add_crumbs example-->
 				<div class="col-xs-12 col-md-12">
 					<h3>add_crumbs example:</h3>
@@ -45,7 +100,27 @@
 					{% add_crumb "test1" "/" %}
 					{% render_breadcrumbs %}
 				</div>
-
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>add_crumbs使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load breadcrumb</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>add_crumb "test" "/"</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>render_breadcrumbs</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>test是显示的名称，"/"是url</span>
+				 			</p>
+				 		</div>
+					</div>
+				</div>
 
 				<!--vertical_nav tag example-->
 				<div class="col-xs-12 col-md-12">
@@ -54,6 +129,24 @@
 					{% vertical_nav "" settings.HORIZION_SECTION %}
 				</div>
 
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>vertical_nav使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load navigation</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>vertical_nav "" settings.HORIZION_SECTION</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>第一个参数是选中的名称，第二个参数是所有水平导航项</span>
+				 			</p>
+				 		</div>
+					</div>
+				</div>
 
 				<!--navtagitem 手动添加导航-->
 				<div class="col-xs-12 col-md-12">
@@ -72,6 +165,24 @@
 					</ul>
 				</div>
 
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>navtagitem使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load navigation</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>navtagitem "手动添加水平导航" "/"</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>第一个参数是名称，第二个参数是url</span>
+				 			</p>
+				 		</div>
+					</div>
+				</div>
 
 				<!--pagination tag example-->
 				<div class="col-xs-12 col-md-12">
@@ -79,6 +190,24 @@
 					{% pagination pages "/" request %}
 				</div>
 
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>pagination使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load pagination</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>pagination pages "/" request</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>第一个参数是page对象，第二个参数是分页url前缀</span>
+				 			</p>
+				 		</div>
+					</div>
+				</div>
 
 				<!--markdown2html tag example-->
 				<div class="col-xs-12 col-md-12">
@@ -86,9 +215,46 @@
 					{{test|markdown2html}}
 					{{test|mark}}
 				</div>
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>markdown2html使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load markdown2html</span>
+								<span>%}</span>
+								<span>{{</span>
+								<span>test|markdown2html</span>
+								<span>}}</span>
+							</p>
+				 		</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-12" id="doforyou">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h5><b>render_footer使用方法</b> </h5></div>
+						<div class="panel-body">
+				   			<p>
+				   				<span class="cp">{%</span>
+								<span>load navigation</span>
+								<span>%}</span>
+								<span>{%</span>
+								<span>render_footer</span>
+								<span>%}</span>
+								<span>需要在settings中配置FOOTER</span>
+								<span>格式为：[[{"name": u"问题反馈", },<span>
+		           				<span>		 {"name": u"常见问题解答", "url": "/"},</span>
+		           				<span>       ...</span>
+		           				<span>	    ]<span>
+		           				<span>	   ]<span>
+		           				<span>字典中的第一个值为列名</span>
+							</p>
+				 		</div>
+					</div>
+				</div>
 	       </div>
 	    </div>
-
+		
 
 		{% render_footer %}
 
