@@ -48,7 +48,6 @@ def do_paginate(datas, pageno=1, pagesize=10):
     return result_page
 
 
-
 def home(request):
     test  = u"* test测试"
     datas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
