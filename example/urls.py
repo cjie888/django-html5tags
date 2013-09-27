@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,8 +14,9 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'example_app.views.home'),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', direct_to_template, {'template': 'example.html'}),
+    url(r'^home$', 'example_app.views.home'),
     url(r'^form/tag/$', 'example_app.views.form_tag'),
     url(r'^rewrite/form/$', 'example_app.views.rewrite_form'),
 )

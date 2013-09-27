@@ -80,7 +80,7 @@
         </div>
     {% else %}
         {% if field.auto_id %}
-            <label class="<!--control-label--> {{ classes.label }}" for="{{ field.auto_id }}">{{ field.label }}</label>
+            <label class="{{ classes.label }}" for="{{ field.auto_id }}">{{ field.label }}</label>
         {% endif %}
 
         {{ field }}

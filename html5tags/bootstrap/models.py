@@ -3,11 +3,12 @@ from django.forms import models
 
 from .fields import Field
 from .widgets import Select, SelectMultiple
+from .forms import BaseForm
 
 __all__ = ('ModelForm', 'ModelChoiceField', 'ModelMultipleChoiceField')
 
 
-class ModelForm(models.ModelForm):
+class ModelForm(BaseForm, models.ModelForm):
     pass
 
 

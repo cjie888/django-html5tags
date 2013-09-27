@@ -1,0 +1,349 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <link rel="icon" href="{% static 'img/favicon.ico' %}" mce_href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+		<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" mce_href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+	
+		<script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery-ui-1.9.2.min.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
+
+	    <link rel="stylesheet" href="{% static 'bootstrap3/css/bootstrap.min.css' %}" />
+	    <title>docs</title>
+	</head>
+
+	<body>
+	    <div class='container'>
+
+			<div class="row">
+				<div class="page-header" style="text-align:center">
+					<h1>html5tags docs</h1>
+				</div>
+			</div>
+
+
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<ul class="list-group" id="menu" style="position:absolute;">
+		  			<li class="list-group-item">
+		  				<a href="#navigation">navigation</a>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<a href="#breadcrumb">breadcrumb</a>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<a href="#pagination">pagination</a>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<a href="#markdown2html">markdown2html</a>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<a href="#bootstrap">bootstrap</a>
+		  			</li>
+		  			<li class="list-group-item">
+		  				<a href="#form">form </a>
+		  			</li>
+				</ul>
+			</div>
+
+
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+		
+				<div class="row" id="navigation">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>navigation </h3></div>
+						<div class="panel-body">
+				   			<p>
+				   				<em style="margin-left: 25px;"><strong>navigation</strong></em> 
+				   				contains render_navbar, navtagitem, horizon_nav, vertical_nav, render_footer.
+				 			</p>
+				 			<ol>
+				   				<li><p><em><strong>render_navbar</strong></em></p>
+				   					<p><span>Usage:</span></p>
+				   					<p>
+				   						<span>{%</span>
+				   						<span>load navigation</span>
+				   						<span> %}</span>
+				   					</p>
+				   					<p>
+										<span>{%</span>
+										<span>render_navbar settings.NAVBAR</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>其中settings.NAVBAR是定义在settings中的变量，也可以是其他地方定义的，只要页面能取到。</span>
+		<span>格式为：[{"name": u"首页", "url": "/"},...]</span></pre>
+									</p>
+				   				</li>
+				   				<li><em><strong>navtagitem</strong></em> 
+				   					<p>
+						   				<span>{%</span>
+										<span>load navigation</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>navtagitem "手动添加水平导航" "/"</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>第一个参数是名称，第二个参数是url</span></pre>
+						 			</p>
+				   				</li>
+				   				<li><em><strong>horizon_nav</strong></em>.
+				   					<p>
+						   				<span>{%</span>
+										<span>load breadcrumb</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>add_crumb "test" "/"</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>render_breadcrumbs</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>test是显示的名称，"/"是url</span></pre>
+						 			</p>
+				   				</li>
+				   				<li><p><em><strong>vertical_nav</strong></em>
+				   					<p>
+						   				<span>{%</span>
+										<span>load navigation</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>vertical_nav "" settings.HORIZION_SECTION</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>第一个参数是选中的名称，第二个参数是所有垂直导航项</span>
+		<span>格式为：[{"name": u"首页", "url": "/"},...]</span>
+										</pre>
+						 			</p>
+				   				</li>
+				   				<li><p><em><strong>render_footer</strong></em></p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load navigation</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>render_footer</span>
+										<span>%}</span>
+									</p>
+									<pre>需要在settings中配置FOOTER<span>格式为：[[{"name": u"问题反馈", },<span>
+						   <span>{"name": u"常见问题解答", "url": "/"},</span><span>...</span>
+				                 <span>]]</span>
+				                 	<p><span>字典中的第一个值为列名</span></p>
+									</pre>
+				   				</li>
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+
+				<div class="row" id="breadcrumb">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>breadcrumb </h3></div>
+						<div class="panel-body">
+							<p>
+				   				<em style="margin-left: 25px;"><strong>breadcrumb</strong></em> 
+				   				contains breadcrumb, add_crumb.
+				 			</p>
+				   			<ol>
+				   				<li><p><em><strong>breadcrumb</strong></em></p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load breadcrumb</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>breadcrumb settings.HORIZION_SECTION request</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>第一个参数的格式为：[{"name": u"首页", "url": "/"},...]</span></pre>
+						 			</p>
+				   				</li>
+				   				<li><p><em><strong>add_crumb</strong></em></p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load breadcrumb</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>add_crumb "test" "/"</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>render_breadcrumbs</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>test是显示的名称，"/"是url</span></pre>
+						 			</p>
+				   				</li>
+				   				
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+
+				<div class="row" id="pagination">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>pagination </h3></div>
+						<div class="panel-body">
+				   			<ol>
+				   				<li><p><em><strong>pagination</strong></em></p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load pagination</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{%</span>
+										<span>pagination pages "/" request</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<pre><span>第一个参数是page对象，第二个参数是分页url前缀</span></pre>
+						 			</p>
+				   				</li>
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+
+				<div class="row" id="markdown2html">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>markdown2html </h3></div>
+						<div class="panel-body">
+				   			<ol>
+				   				<li><p><em><strong>markdown2html</strong></em></p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load markdown2html</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{{</span>
+										<span>test|markdown2html</span>
+										<span>}}</span>
+									</p>
+				   				</li>
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+
+				<div class="row" id="bootstrap">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>bootstrap </h3></div>
+						<div class="panel-body">
+				   			<ol>
+				   				<li><p><em><strong>bootstrap</strong></em></p>
+				   					<p>
+						   				<em style="margin-left: 25px;"><strong>bootstrap</strong></em> 
+						   				将form表单转化为bootstrap样式，不支持继承ModelForm生成的form.
+						 			</p>
+				   					<p>
+						   				<span>{%</span>
+										<span>load bootstrap</span>
+										<span>%}</span>
+									</p>
+									<p>
+										<span>{{</span>
+										<span>form|bootstrap</span>
+										<span>}}</span>
+									</p>
+				   				</li>
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+
+				<div class="row" id="form">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3>form </h3></div>
+						<div class="panel-body">
+							<p>
+				   				<em style="margin-left: 25px;"><strong>form</strong></em> 
+				   				重写form表单，在页面上展现bootstrap样式.增加了MarkdownField，支持markdown输入框
+				 			</p>
+				   			<ol>
+				   				<li><p><em><strong>form</strong></em></p>
+						   				<p>from html5tags.bootstrap import form</span></p>
+						   				<p><span>class TestForm(form.Form):</span>
+		    bootstrap_textarea = floppy.MarkdownField()
+						   				</p>
+						   				<p>其他field使用方法和django的form相同</p>
+						   				<p><span>页面上渲染可以使用{{</span>
+										<span>form.as_bootstrap}}</span></p>
+				   				</li>
+				   			</ol>
+				 		</div>
+					</div>
+				</div>
+
+		
+				<div class="row" id="have_a_try">
+					<div class="panel panel-default">
+						<div class="panel-body">
+				   			<p>可以自定义form的field显示</p>
+				   			<p>
+				   				<span>{%</span>
+								<span>load render_form_field</span>
+								<span>%}</span>
+							</p>
+							<p>
+								<span>{%</span>
+								<span>for field in form</span>
+								<span>%}</span>
+							</p>
+							<p><span>{%<span>
+							<span>render_field field "div" "form-group" "label" "" %}</span></p>
+				 		</div>
+					</div>
+				</div>
+				
+				<div class="row" id="form">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3> tag样例 </h3></div>
+						<div class="panel-body">
+				   			<ul class="pager">
+						  		<li><a target="_blank" href="{% url example_app.views.home %}">通用tag样例</a></li>
+				   				<li><a target="_blank" href="{% url example_app.views.form_tag %}">bootstrap的tag样例</a></li>
+				   				<li><a target="_blank" href="{% url example_app.views.rewrite_form %}">重写form样例</a></li>
+							</ul>
+				 		</div>
+					</div>
+				</div>
+	</div>
+</div>
+
+<script language="javascript">
+  function moveMenu(){
+    document.getElementById("menu").style.top=(document.documentElement.scrollTop+document.documentElement.clientHeight/2-200)+"px";
+    document.getElementById("menu").style.left=(document.documentElement.scrollLeft)+"px";
+  }
+  window.onscroll=moveMenu;
+  window.onresize=moveMenu;
+  window.onload=moveMenu;
+</script>

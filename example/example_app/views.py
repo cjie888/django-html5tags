@@ -48,7 +48,6 @@ def do_paginate(datas, pageno=1, pagesize=10):
     return result_page
 
 
-
 def home(request):
     test  = u"* test测试"
     datas = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -60,10 +59,10 @@ def home(request):
 def form_tag(request):
     form = ExampleForm()
 
-    return render_to_response('example_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
+    return render_to_response('form_tag.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
 
 
 def rewrite_form(request):
     form = TestForm()
 
-    return render_to_response('test_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))
+    return render_to_response('rewrite_form.html', {'form': form, 'request': request}, context_instance=RequestContext(request))

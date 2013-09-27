@@ -8,44 +8,13 @@ register = template.Library()
 
 @register.filter
 def bootstrap(element):
-    markup_classes = {'label': '', 'value': '', 'single_value': ''}
+    markup_classes = {'label': '', 'value': ''}
     return render(element, markup_classes)
 
 
 @register.filter
 def bootstrap_inline(element):
-    markup_classes = {'label': 'sr-only', 'value': '', 'single_value': ''}
-    return render(element, markup_classes)
-
-
-@register.filter
-def bootstrap_horizontal(element, label_cols={}):
-    if not label_cols:
-        label_cols = 'col-sm-2 col-lg-2'
-
-    markup_classes = {'label': label_cols,
-            'value': '',
-            'single_value': ''}
-
-    for cl in label_cols.split(' '):
-        splited_class = cl.split('-')
-
-        try:
-            value_nb_cols = int(splited_class[-1])
-        except ValueError:
-            value_nb_cols = 12
-
-        if value_nb_cols >= 12:
-            splited_class[-1] = 12
-        else:
-            offset_class = cl.split('-')
-            offset_class[-1] = 'offset-' + str(value_nb_cols)
-            splited_class[-1] = str(12 - value_nb_cols)
-            markup_classes['single_value'] += ' ' + '-'.join(offset_class)
-            markup_classes['single_value'] += ' ' + '-'.join(splited_class)
-
-        markup_classes['value'] += ' ' + '-'.join(splited_class)
-
+    markup_classes = {'label': 'sr-only', 'value': ''}
     return render(element, markup_classes)
 
 
@@ -114,6 +83,7 @@ def is_datetime(field):
 @register.filter
 def is_time(field):
     return isinstance(field.field.widget, forms.TimeInput)
+
 
 @register.filter
 def is_file(field):

@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User as DjangoUser
 import html5tags.bootstrap as floppy
 import time
-import datetime
+
 
 if DjangoUser.objects.all().count() == 0:
     DjangoUser.objects.create_user(email="test@funshion.com", password="111111", username="test")
