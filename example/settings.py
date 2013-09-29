@@ -183,10 +183,14 @@ NAVBAR = [{"name": "example", "url": "/"},
           {"name": "test", "url": "/"}]
 
 
-FOOTER = [[{"name": u"问题反馈", },
+FOOTER = [[
            {"name": u"常见问题解答", "url": "/"},
            {"name": u"故障报告", "url": "/"},
            {"name": u"使用帮助", "url": "/"}],
-          [{"name": u"合作伙伴", },
-           {"name": u"技术支持：应用研发系统组", "url": "/"}]
+          [
+           {"name": u"快图Storm池", "url": "http://220.181.167.34:8080/"},
+           {"name": u"日志爬虫", "url": "http://traceall.funshion.com/_logcrawler/"},
+           {"name": u"cacti监控", "url": "http://traceall.funshion.com/_online/cacti/"},
+           {"name": u"MS监控", "url": "http://traceall.funshion.com/_online/msmonitor/"}],
+          [{"name": SITE_NAME, "copyright": u"@风行", "url": "http://traceall.funshion.com"}]
           ]
