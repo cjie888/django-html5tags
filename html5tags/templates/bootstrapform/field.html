@@ -7,21 +7,25 @@
         {% if field.auto_id %}
         <label>
             {{ field }} <span>{{ field.label }}</span>
+            {% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        	{% endif %}
         </label>
         {% endif %}
         {% for error in field.errors %}
             <span class="help-block">{{ error }}</span>
         {% endfor %}
 
-        {% if field.help_text %}
-            <small><p class="help-block">
-                {{ field.help_text|safe }}
-            </p></small>
-        {% endif %}
-
 	{% elif field|is_multiple_checkbox %}
 		{% if field.auto_id %}
 			<span>{{ field.label }}</span>
+			{% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        	{% endif %}
             <label>
                 {{ field }}
             </label>
@@ -30,15 +34,14 @@
                 <span class="help-block">{{ error }}</span>
             {% endfor %}
 
-            {% if field.help_text %}
-                <small><p class="help-block">
-                    {{ field.help_text|safe }}
-                </p></small>
-            {% endif %}
-
     {% elif field|is_radio %}
         {% if field.auto_id %}
             <label class="{{ classes.label }}">{{ field.label }}</label>
+            {% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        	{% endif %}
         {% endif %}
 
         {% for choice in field %}
@@ -54,26 +57,35 @@
             <span class="help-block">{{ error }}</span>
         {% endfor %}
 
-        {% if field.help_text %}
-        <p class="help-block">
-            {{ field.help_text|safe }}
-        </p>
-        {% endif %}
-
 	{% elif field|is_datetime %}
 		<label>{{field.label}}</label>
+		{% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        {% endif %}
         <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd hh:ii:ss">
         	<input id="id_start_time" type="time" class="form-control" name="start_time" />
         	<span class="add-on"><i class="icon-th"></i></span>
         </div>
     {% elif field|is_date %}
 		<label>{{field.label}}</label>
+		{% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        {% endif %}
         <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd">
         	<input id="id_start_time" type="time" class="form-control" name="start_time" />
         	<span class="add-on"><i class="icon-th"></i></span>
         </div>
     {% elif field|is_time %}
 		<label>{{field.label}}</label>
+		{% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        {% endif %}
         <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="hh:ii:ss">
         	<input id="id_start_time" type="time" class="form-control" name="start_time" />
         	<span class="add-on"><i class="icon-th"></i></span>
@@ -81,6 +93,11 @@
     {% else %}
         {% if field.auto_id %}
             <label class="{{ classes.label }}" for="{{ field.auto_id }}">{{ field.label }}</label>
+            {% if field.help_text %}
+            <small>
+            	<span class="text-muted">{{ field.help_text|safe }}</span>
+            </small>
+        	{% endif %}
         {% endif %}
 
         {{ field }}
@@ -88,12 +105,6 @@
         {% for error in field.errors %}
             <span class="help-block">{{ error }}</span>
         {% endfor %}
-
-        {% if field.help_text %}
-            <p class="help-block">
-                {{ field.help_text|safe }}
-            </p>
-        {% endif %}
 
     {% endif %}
 </div>
