@@ -15,7 +15,7 @@ class ExtensionPaginator(Paginator):
     def page(self, number):
         self.page_num = number
         return super(ExtensionPaginator, self).page(number)
- 
+
     def _page_range_extension(self):
         num_count = 2 * self.range_num + 1
         if self.num_pages <= num_count:
@@ -37,8 +37,8 @@ class ExtensionPaginator(Paginator):
         num_list.sort()
         return num_list
     page_range_extension = property(_page_range_extension)
- 
- 
+
+
 def do_paginate(datas, pageno=1, pagesize=10):
     paginator = ExtensionPaginator(datas, pagesize)
     try:
