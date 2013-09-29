@@ -4,10 +4,11 @@
 
 	{% for site_links in footers %}
     	{% if forloop.last %}
-    	<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+    	<ul class="list-inline">
     	{% for copy in site_links %}
-    	<p>{{copy.copyright}}</p>
+    	<li><small><p><a href="copy.url">{{copy.name}}</a> copyright {{copy.copyright}}</p></small></li>
     	{% endfor %}
+    	</ul>
     	</div>
     	{% else %}
     	<ul class="list-inline">
