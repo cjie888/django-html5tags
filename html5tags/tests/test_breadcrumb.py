@@ -6,29 +6,30 @@ from html5tags.templatetags.breadcrumb import render_breadcrumbs
 
 class CrumbsTestCase(unittest.TestCase):
     def test_render_without_request(self):
-        render_breadcrumbs({})
-        
+        response = render_breadcrumbs({})
+
+        self.assertEqual(response, {"breadcrumb": None})
+
     def test_render_with_request(self):
-        render_breadcrumbs({'request': ''})
-        
+        response = render_breadcrumbs({'request': ''})
+
+        self.assertEqual(response, {"breadcrumb": None})
+
     def test_render_with_request_and_crumbs(self):
         context = {}
         context['request'] = HttpRequest()
         context['request'].breadcrumbs = []
         context['request'].breadcrumbs.append(('Test1', '/'))
         context['request'].breadcrumbs.append(('Test2', '/'))
-        render_breadcrumbs(context)
-        
+        response = render_breadcrumbs(context)
+        self.assertEqual(response, {'breadcrumb': [('Test1', '/'), ('Test2', '/')]})
+
     def test_add_without_request(self):
-        render_breadcrumbs({})
-        
+        response = render_breadcrumbs({})
+
+        self.assertEqual(response, {"breadcrumb": None})
+
     def test_add_with_request(self):
-        render_breadcrumbs({'request': ''})
-        
-    def test_add_with_request_and_crumbs(self):
-        context = {}
-        context['request'] = HttpRequest() 
-        context['request'].breadcrumbs = []
-        context['request'].breadcrumbs.append(('Test1', '/'))
-        context['request'].breadcrumbs.append(('Test2', '/'))
-        render_breadcrumbs(context)
+        response = render_breadcrumbs({'request': ''})
+
+        self.assertEqual(response, {"breadcrumb": None})
