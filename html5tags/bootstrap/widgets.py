@@ -111,7 +111,7 @@ class Textarea(Widget):
                 conditional_escape(force_unicode(value))))
 
 
-class MarkDownTextarea(Textarea):#(AdminTextareaWidget):
+class MarkDownTextarea(Textarea):
     rows = 10
     cols = 40
 
@@ -145,7 +145,8 @@ class MarkDownTextarea(Textarea):#(AdminTextareaWidget):
                          """)
 
 
-class DateInput(BootstrapInput, forms.DateInput):
+class DateInput(forms.DateInput):
+    input_type = "datetime"
     def render(self, name, value, attrs=None):
         date_input_attrs = {}
         if attrs:
@@ -154,23 +155,22 @@ class DateInput(BootstrapInput, forms.DateInput):
         if not date_format:
             date_format = 'yyyy-mm-dd'
         date_input_attrs.update({
-            'data-date-format': 'yyyy-mm-dd',
-            'data-date-language': 'en',
-            'data-bootstrap-widget': 'datepicker',
             'class': 'form-control'
         })
         attrs['class'] = 'form-control'
-        return mark_safe(super(DateInput, self).render(name, value, attrs=date_input_attrs)+
-                         """<script>$("#"""+attrs['id']+"""").datetimepicker({
+        return mark_safe('<div id="datetimepicker_'+attrs['id']+'" class="input-append date" data-date-format="yyyy-mm-dd" data-date-language="zh-CN">'+
+                         super(DateInput, self).render(name, value, attrs=date_input_attrs)+'<span class="add-on"><i class="icon-th"></i></span></div>'+
+                         """<script>$("#datetimepicker_"""+attrs['id']+"""").datetimepicker({
                          keyboardNavigation: true,
                          todayBtn: true,
                          todayHighlight: true,
-                         startView: 1}, "update");
+                         }, "update");
                          </script>
                          """)
 
 
 class DateTimeInput(forms.DateInput):
+    input_type = "datetime"
     def render(self, name, value, attrs=None):
         date_input_attrs = {}
         if attrs:
@@ -179,18 +179,16 @@ class DateTimeInput(forms.DateInput):
         if not date_format:
             date_format = 'yyyy-mm-dd hh:ii:ss'
         date_input_attrs.update({
-            'data-date-format': 'yyyy-mm-dd hh:ii:ss',
-            'data-date-language': 'en',
-            'data-bootstrap-widget': 'datepicker',
             'class': 'form-control'
         })
         attrs['class'] = 'form-control'
-        return mark_safe(super(DateTimeInput, self).render(name, value, attrs=date_input_attrs)+
-                         """<script>$("#"""+attrs['id']+"""").datetimepicker({
+        return mark_safe('<div id="datetimepicker_'+attrs['id']+'" class="input-append date" data-date-format="yyyy-mm-dd hh:ii:ss" data-date-language="zh-CN">'+
+                         super(DateTimeInput, self).render(name, value, attrs=date_input_attrs)+'<span class="add-on"><i class="icon-th"></i></span></div>'+
+                         """<script>$("#datetimepicker_"""+attrs['id']+"""").datetimepicker({
                          keyboardNavigation: true,
                          todayBtn: true,
                          todayHighlight: true,
-                         startView: 1}, "update");
+                         }, "update");
                          </script>
                          """)
 
@@ -204,14 +202,12 @@ class TimeInput(forms.DateInput):
         if not date_format:
             date_format = 'hh:ii:ss'
         date_input_attrs.update({
-            'data-date-format': 'hh:ii:ss',
-            'data-date-language': 'en',
-            'data-bootstrap-widget': 'datepicker',
             'class': 'form-control'
         })
         attrs['class'] = 'form-control'
-        return mark_safe(super(TimeInput, self).render(name, value, attrs=date_input_attrs)+
-                         """<script>$("#"""+attrs['id']+"""").datetimepicker({
+        return mark_safe('<div id="datetimepicker_'+attrs['id']+'" class="input-append date" data-date-format="hh:ii:ss" data-date-language="zh-CN">'+
+                         super(TimeInput, self).render(name, value, attrs=date_input_attrs)+'<span class="add-on"><i class="icon-th"></i></span></div>'+
+                         """<script>$("#datetimepicker_"""+attrs['id']+"""").datetimepicker({
                          keyboardNavigation: true,
                          todayBtn: true,
                          todayHighlight: true,
