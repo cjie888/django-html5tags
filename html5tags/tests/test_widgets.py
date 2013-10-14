@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import os
 
@@ -106,7 +107,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li><small><font color="#ff0000">This field is required.</font></small></li>
+            <li><small><font color="#ff0000">这个字段是必填项。</font></small></li>
         </ul>
         <p>
             <label for="id_text">Text:</label>
@@ -128,7 +129,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li><small><font color="#ff0000">This field is required.</font></small></li>
+            <li><small><font color="#ff0000">这个字段是必填项。</font></small></li>
         </ul>
         <p>
             <label for="id_text">Text:</label>
@@ -215,15 +216,17 @@ class WidgetRenderingTest(TestCase):
         rendered = DateForm().as_p()
 
         self.assertHTMLEqual(rendered, """
-        <p><label for="id_date">Date:</label> 
-        <input data-date-language="en" name="date" data-bootstrap-widget="datepicker" 
-        data-date-format="yyyy-mm-dd" type="None" id="id_date" class="form-control form-control" />
-            <script>$("#id_date").datetimepicker({
-                keyboardNavigation: true,
-                todayBtn: true,
-                todayHighlight: true,
-                startView: 1}, "update");
-            </script>
+        <p><label for="id_date">Date:</label>
+        <div id="datetimepicker_id_date" class="input-append date" data-date-format="yyyy-mm-dd" data-date-language="zh-CN">
+            <input class="form-control" type="datetime" name="date" id="id_date" />
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+        <script>$("#datetimepicker_id_date").datetimepicker({
+            keyboardNavigation: true,
+            todayBtn: true,
+            todayHighlight: true,
+            }, "update");
+        </script>
         </p>
         """)
 
@@ -235,14 +238,17 @@ class WidgetRenderingTest(TestCase):
         rendered = DateTimeForm().as_p()
 
         self.assertHTMLEqual(rendered, """
-        <p><label for="id_date">Date:</label> <input data-date-language="en" name="date" data-bootstrap-widget="datepicker" 
-        data-date-format="yyyy-mm-dd hh:ii:ss" type="text" id="id_date" class="form-control" />
-            <script>$("#id_date").datetimepicker({
-                keyboardNavigation: true,
-                todayBtn: true,
-                todayHighlight: true,
-                startView: 1}, "update");
-            </script>
+        <p><label for="id_date">Date:</label>
+        <div id="datetimepicker_id_date" class="input-append date" data-date-format="yyyy-mm-dd hh:ii:ss" data-date-language="zh-CN">
+            <input class="form-control" type="datetime" name="date" id="id_date" />
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+        <script>$("#datetimepicker_id_date").datetimepicker({
+            keyboardNavigation: true,
+            todayBtn: true,
+            todayHighlight: true,
+            }, "update");
+        </script>
         </p>
         """)
 
@@ -253,14 +259,17 @@ class WidgetRenderingTest(TestCase):
 
         rendered = TimeForm().as_p()
         self.assertHTMLEqual(rendered, """
-        <p><label for="id_date">Date:</label> <input data-date-language="en" name="date" data-bootstrap-widget="datepicker" 
-        data-date-format="hh:ii:ss" type="text" id="id_date" class="form-control" />
-            <script>$("#id_date").datetimepicker({
-                keyboardNavigation: true,
-                todayBtn: true,
-                todayHighlight: true,
-                startView: 1}, "update");
-            </script>
+        <p><label for="id_date">Date:</label>
+        <div id="datetimepicker_id_date" class="input-append date" data-date-format="hh:ii:ss" data-date-language="zh-CN">
+            <input class="form-control" type="text" name="date" id="id_date" />
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+        <script>$("#datetimepicker_id_date").datetimepicker({
+            keyboardNavigation: true,
+            todayBtn: true,
+            todayHighlight: true,
+            startView: 1}, "update");
+        </script>
         </p>
         """)
 
@@ -391,7 +400,7 @@ class WidgetRenderingTest(TestCase):
         rendered = form.as_p()
         self.assertHTMLEqual(rendered, """
         <ul class="errorlist">
-            <li><small><font color="#ff0000">This field is required.</font></small></li>
+            <li><small><font color="#ff0000">这个字段是必填项。</font></small></li>
         </ul>
         <p>
             <label for="id_cb">Cb:</label>
@@ -472,9 +481,9 @@ class WidgetRenderingTest(TestCase):
         <p>
             <label for="id_nb">Nb:</label>
             <select class="form-control" name="nb" id="id_nb" >
-                <option value="1" selected>Unknown</option>
-                <option value="2">Yes</option>
-                <option value="3">No</option>
+                <option value="1" selected>未知</option>
+                <option value="2">是</option>
+                <option value="3">否</option>
             </select>
         </p>
         """)
@@ -484,9 +493,9 @@ class WidgetRenderingTest(TestCase):
         <p>
             <label for="id_nb">Nb:</label>
             <select name="nb" id="id_nb" class="form-control">
-                <option value="1">Unknown</option>
-                <option value="2" selected="selected">Yes</option>
-                <option value="3">No</option>
+                <option value="1">未知</option>
+                <option value="2" selected="selected">是</option>
+                <option value="3">否</option>
             </select>
         </p>
         """)

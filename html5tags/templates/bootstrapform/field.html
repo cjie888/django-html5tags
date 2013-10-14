@@ -64,8 +64,8 @@
             	<span class="text-muted">{{ field.help_text|safe }}</span>
             </small>
         {% endif %}
-        <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd hh:ii:ss">
-        	<input id="id_start_time" type="time" class="form-control" name="start_time" />
+        <div class="input-append date" id=datetimepicker_{{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd hh:ii:ss">
+        	<input id="{{field.auto_id}}" type="datetime" class="form-control" name="{{field.name}}" />
         	<span class="add-on"><i class="icon-th"></i></span>
         </div>
     {% elif field|is_date %}
@@ -75,8 +75,8 @@
             	<span class="text-muted">{{ field.help_text|safe }}</span>
             </small>
         {% endif %}
-        <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd">
-        	<input id="id_start_time" type="time" class="form-control" name="start_time" />
+        <div class="input-append date" id=datetimepicker_{{field.auto_id}} data-date-language="zh-CN" data-date-format="yyyy-mm-dd">
+        	<input id="{{field.auto_id}}" type="datetime" class="form-control" name="{{field.name}}" />
         	<span class="add-on"><i class="icon-th"></i></span>
         </div>
     {% elif field|is_time %}
@@ -86,10 +86,11 @@
             	<span class="text-muted">{{ field.help_text|safe }}</span>
             </small>
         {% endif %}
-        <div class="input-append date" id={{field.auto_id}} data-date-language="zh-CN" data-date-format="hh:ii:ss">
-        	<input id="id_start_time" type="time" class="form-control" name="start_time" />
-        	<span class="add-on"><i class="icon-th"></i></span>
-        </div>
+        <div class="input-append date" id="datetimepicker_{{field.auto_id}}" data-date-language="zh-CN" data-date-format="hh:ii:ss">
+        	<input id="{{field.auto_id}}" type="text" class="form-control" name="{{field.name}}" />
+			<span class="add-on"><i class="icon-th"></i></span>
+		</div>
+
     {% else %}
         {% if field.auto_id %}
             <label class="{{ classes.label }}" for="{{ field.auto_id }}">{{ field.label }}</label>
@@ -108,11 +109,19 @@
 
     {% endif %}
 </div>
-{% if field|is_datetime or field|is_date or field|is_time %}
-<script>$("#{{field.auto_id}}").datetimepicker({
+{% if field|is_datetime or field|is_date %}
+<script>$("#datetimepicker_{{field.auto_id}}").datetimepicker({
+	keyboardNavigation: true,
+	todayBtn: true,
+	todayHighlight: true
+	}, "update");
+</script>
+{%elif field|is_time %}
+<script>$("#datetimepicker_{{field.auto_id}}").datetimepicker({
 	keyboardNavigation: true,
 	todayBtn: true,
 	todayHighlight: true,
 	startView: 1}, "update");
 </script>
 {% endif %}
+
