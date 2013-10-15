@@ -11,7 +11,7 @@ def render_field(parser, token):
     try:
         tag_name, field, field_container, container_css, label_container, label_css = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % token.split_contents[0]
+        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % tag_name
     return RenderField(field, field_container, container_css, label_container, label_css)
 
 class RenderField(template.Node):

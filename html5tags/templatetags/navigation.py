@@ -13,7 +13,7 @@ def narbar(parser, token):
     try:
         tag_name, buttons = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % token.split_contents[0]
+        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % tag_name
     return NavBar(buttons)
 
 class NavBar(template.Node):
@@ -36,7 +36,7 @@ def navtagitem(parser, token):
     try:
         tag_name, nav_text, nav_path = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % token.split_contents[0]
+        raise template.TemplateSyntaxError, "%r tag requires exactly two arguments: path and text" % tag_name
 
     return NavTagItem(nav_text, nav_path)
 
@@ -54,7 +54,7 @@ def do_horizontal_nav(parser, token):
     try:
         tag_name, tab, tabs = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError("%r tag requires a single argument" % token.contents.split()[0])
+        raise template.TemplateSyntaxError("%r tag requires a single argument" % tag_name)
     return HorizontalNavNode(tab, tabs)
 
 class HorizontalNavNode(template.Node):
@@ -78,7 +78,7 @@ def do_vertical_nav(parser, token):
     try:
         tag_name, tab, tabs = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError("%r tag requires a single argument" % token.contents.split()[0])
+        raise template.TemplateSyntaxError("%r tag requires a single argument" % tag_name)
     return VerticalNavNode(tab, tabs)
 
 class VerticalNavNode(template.Node):
