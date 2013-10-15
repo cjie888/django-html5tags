@@ -10,7 +10,7 @@ def do_pagination(parser, token):
     try:
         tag_name, pager, prefix, request = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError("%r tag requires two argument" % tag_name)
+        raise template.TemplateSyntaxError("%r tag requires two argument" % token.contents.split()[0])
 
     if prefix[0] != prefix[-1] and prefix[0] in ('"', "'"):
         raise template.TemplateSyntaxError("%r tag's second argument should be in quotes" % tag_name)

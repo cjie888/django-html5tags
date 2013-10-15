@@ -14,7 +14,7 @@ def do_breadcrumb(parser, token):
     try:
         tag_name, breadcrumb, request = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError("%r tag requires a single argument" % tag_name)
+        raise template.TemplateSyntaxError("%r tag requires a single argument" % token.contents.split()[0])
     return BreadcrumbNode(breadcrumb, request)
 
 class BreadcrumbNode(template.Node):
